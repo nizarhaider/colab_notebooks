@@ -1,0 +1,14 @@
+
+# Byte-compiled / optimized / DLL files
+.venv/
+__pycache__/
+
+# Sensitive
+dataset/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
