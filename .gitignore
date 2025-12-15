@@ -16,4 +16,6 @@ dist/
 build/
 *.egg-info
 
-
+# Your confidential-ish chat data
+*.jsonl
+*.txt
