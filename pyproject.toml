@@ -10,9 +10,15 @@ dependencies = [
 ]
 
 [project.scripts]
-parse_conv = "main:parse_conversations"
+parse_conv = "data_preparation.data_prep:parse_conversations"
 
 
 [build-system]
 requires = ["setuptools>=78.1.0", "wheel>=0.45.1"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["data_preparation"]
+
+[tool.setuptools.package-dir]
+"" = "src"
