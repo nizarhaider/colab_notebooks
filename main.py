@@ -4,9 +4,8 @@ import questionary
 
 import re
 
-WA_RE_PATTERN = re.compile(
-        r'^\[\d{4}-\d{2}-\d{2},\s\d{2}:\d{2}:\d{2}\]\s([^:]+):'
-    )
+WA_RE_PATTERN = re.compile(r"^\[\d{4}-\d{2}-\d{2},\s\d{2}:\d{2}:\d{2}\]\s([^:]+):")
+
 
 @click.command()
 @click.option(
@@ -30,7 +29,7 @@ def parse_conversations(input_file: str) -> dict:
     else:
         click.echo(f"Path '{input_file}' does not exist.")
         exit(1)
-    
+
     click.echo(f"Read {len(raw_conversations)} lines from {input_file}")
 
     # Get Names
@@ -38,20 +37,18 @@ def parse_conversations(input_file: str) -> dict:
         match = WA_RE_PATTERN.match(conv)
         if match:
             names.append(match.group(1))
-            cleaned_conversation.append(conv) # Also get the clean convos
+            cleaned_conversation.append(conv)  # Also get the clean convos
 
-    selected_name = questionary.select(
-        "What is your name?",
-        choices=set(names)).ask()
-    
+    selected_name = questionary.select("What is your name?", choices=set(names)).ask()
+
     parsed_conversations = [
-            {
-                "role": "assistant" if selected_name in conv else "user",
-                "content": conv.split(":", 3)[
-                    -1
-                ].strip()  # Extract content after the third colon
-            }
-            for conv in cleaned_conversation
+        {
+            "role": "assistant" if selected_name in conv else "user",
+            "content": conv.split(":", 3)[
+                -1
+            ].strip(),  # Extract content after the third colon
+        }
+        for conv in cleaned_conversation
     ]
 
     current_conversation = []
@@ -77,4 +74,3 @@ def parse_conversations(input_file: str) -> dict:
             outfile.write(f"{line}\n")
 
     click.echo("Parsed conversations saved as parsed_conversations.jsonl ✅")
-
