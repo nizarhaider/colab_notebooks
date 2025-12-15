@@ -12,3 +12,8 @@ dataset/
 # VSCode settings
 .vscode/
 
+dist/
+build/
+*.egg-info
+
+

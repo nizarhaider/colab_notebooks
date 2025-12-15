@@ -1,7 +1,18 @@
 [project]
-name = "colab-notebooks"
+name = "finetuning-data-preparation"
 version = "0.1.0"
-description = "Add your description here"
+description = "Parses your whatsapp chats to be finetuning ready"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "click>=8.3.1",
+    "questionary>=2.1.1",
+]
+
+[project.scripts]
+parse_conv = "main:parse_conversations"
+
+
+[build-system]
+requires = ["setuptools>=78.1.0", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
